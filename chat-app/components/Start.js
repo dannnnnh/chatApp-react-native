@@ -10,8 +10,9 @@ import {
   ImageBackground,
 } from "react-native";
 
-const Screen1 = ({ navigation }) => {
+const Start = ({ navigation }) => {
   const [name, setName] = useState("");
+  const [color, setColor] = useState("");
 
   return (
     <ImageBackground
@@ -31,15 +32,29 @@ const Screen1 = ({ navigation }) => {
           <Text>Choose your Background Color</Text>
 
           <View style={styles.circleContainer}>
-            <View style={[styles.circle, { backgroundColor: "black" }]} />
-            <View style={[styles.circle, { backgroundColor: "#989FAD" }]} />
-            <View style={[styles.circle, { backgroundColor: "#4E495E" }]} />
-            <View style={[styles.circle, { backgroundColor: "#F3B23E" }]} />
+            <TouchableOpacity
+              style={[styles.radioButton, { backgroundColor: "#0A0B08" }]}
+              onPress={() => setColor("#0A0B08")}
+            ></TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.radioButton, { backgroundColor: "#464055" }]}
+              onPress={() => setColor("#464055")}
+            ></TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.radioButton, { backgroundColor: "#8C95A4" }]}
+              onPress={() => setColor("#8C95A4")}
+            ></TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.radioButton, { backgroundColor: "#BCC6B0" }]}
+              onPress={() => setColor("#BCC6B0")}
+            ></TouchableOpacity>
           </View>
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("Screen2", { name: name })}
+            onPress={() =>
+              navigation.navigate("Chat", { name: name, color: color })
+            }
           >
             <Text style={styles.buttonText}>Start Chatting</Text>
           </TouchableOpacity>
@@ -57,7 +72,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 200,
+    marginTop: 100,
     alignItems: "center",
   },
   secondaryContainer: {
@@ -75,8 +90,9 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   headerText: {
-    fontSize: 32,
-    marginBottom: 30,
+    fontSize: 38,
+    marginBottom: 200,
+    color: "#FFFFFF",
   },
   button: {
     width: 300,
@@ -101,7 +117,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
   },
-  circle: {
+  radioButton: {
     width: 50,
     height: 50,
     borderRadius: 25,
@@ -109,4 +125,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Screen1;
+export default Start;
