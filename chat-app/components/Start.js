@@ -1,128 +1,193 @@
-import { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
-  View,
   Text,
-  Button,
   TextInput,
-  TouchableOpacity,
-  backgroundImage,
+  View,
   ImageBackground,
+  Pressable,
+  TouchableNativeFeedback,
 } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-const Start = ({ navigation }) => {
-  const [name, setName] = useState("");
-  const [color, setColor] = useState("");
+export default class Start extends React.Component {
+  // Save name and color
+  constructor(props) {
+    super(props);
+    this.state = { name: "", color: "" };
+  }
 
-  return (
-    <ImageBackground
-      source={require("../assets/BackgroundImage.png")}
-      style={styles.backgroundImage}
-    >
+  render() {
+    return (
       <View style={styles.container}>
-        <Text style={styles.headerText}>Chatable</Text>
-        <View style={styles.secondaryContainer}>
-          <TextInput
-            style={styles.textInput}
-            value={name}
-            onChangeText={setName}
-            placeholder="Yourname"
-          />
-
-          <Text>Choose your Background Color</Text>
-
-          <View style={styles.circleContainer}>
-            <TouchableOpacity
-              style={[styles.radioButton, { backgroundColor: "#0A0B08" }]}
-              onPress={() => setColor("#0A0B08")}
-            ></TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.radioButton, { backgroundColor: "#464055" }]}
-              onPress={() => setColor("#464055")}
-            ></TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.radioButton, { backgroundColor: "#8C95A4" }]}
-              onPress={() => setColor("#8C95A4")}
-            ></TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.radioButton, { backgroundColor: "#BCC6B0" }]}
-              onPress={() => setColor("#BCC6B0")}
-            ></TouchableOpacity>
+        {/* Set background */}
+        <ImageBackground
+          source={require("../img/background.png")}
+          style={styles.background}
+        >
+          <Text style={styles.text}>myChat</Text>
+          <View style={styles.inputContainer}>
+            <View style={styles.inputName}>
+              <Ionicons
+                style={{ position: "absolute", top: "40%", marginLeft: 8 }}
+                name="person-outline"
+                size={24}
+                color="#757083"
+              />
+              <TextInput
+                style={{ marginLeft: 30 }}
+                placeholder="Your Name"
+                value={this.state.name}
+                onChangeText={(name) => this.setState({ name })}
+              />
+            </View>
+            <View style={{ marginTop: -60 }}>
+              <Text style={styles.colorText}>Choose Background Color:</Text>
+              {/* Set color depending on the area pressed */}
+              <View style={styles.colorBoxContainer}>
+                <TouchableNativeFeedback
+                  onPress={() => {
+                    this.setState({ color: styles.color1.backgroundColor });
+                  }}
+                >
+                  <View style={styles.color1} />
+                </TouchableNativeFeedback>
+                <TouchableNativeFeedback
+                  onPress={() => {
+                    this.setState({ color: styles.color2.backgroundColor });
+                  }}
+                >
+                  <View style={styles.color2} />
+                </TouchableNativeFeedback>
+                <TouchableNativeFeedback
+                  onPress={() => {
+                    this.setState({ color: styles.color3.backgroundColor });
+                  }}
+                >
+                  <View style={styles.color3} />
+                </TouchableNativeFeedback>
+                <TouchableNativeFeedback
+                  onPress={() => {
+                    this.setState({ color: styles.color4.backgroundColor });
+                  }}
+                >
+                  <View style={styles.color4} />
+                </TouchableNativeFeedback>
+              </View>
+            </View>
+            {/* Navigate to chat screen upon pressing */}
+            <Pressable
+              style={styles.buttonChat}
+              onPress={() => {
+                this.props.navigation.setOptions({ title: this.state.name });
+                this.props.navigation.navigate("Chat", {
+                  name: this.state.name,
+                  color: this.state.color,
+                });
+              }}
+            >
+              <Text style={styles.buttonText}>Start Chatting</Text>
+            </Pressable>
           </View>
-
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() =>
-              navigation.navigate("Chat", { name: name, color: color })
-            }
-          >
-            <Text style={styles.buttonText}>Start Chatting</Text>
-          </TouchableOpacity>
-        </View>
+        </ImageBackground>
       </View>
-    </ImageBackground>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   container: {
     flex: 1,
-    marginTop: 100,
-    alignItems: "center",
-  },
-  secondaryContainer: {
-    backgroundColor: "white",
-    width: "100%",
-    padding: 30,
-    borderRadius: 2,
-    alignItems: "center",
-  },
-  textInput: {
-    width: 300,
-    padding: 16,
-    borderWidth: 1,
-    marginTop: 15,
-    marginBottom: 15,
-  },
-  headerText: {
-    fontSize: 38,
-    marginBottom: 200,
-    color: "#FFFFFF",
-  },
-  button: {
-    width: 300,
-    backgroundColor: "#7F7B8D",
-    padding: 15,
-    borderWidth: 0,
-    marginTop: 15,
-    marginBottom: 15,
-    borderRadius: 2,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-    textAlign: "center",
-  },
-  circleContainer: {
-    alignContent: "center",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 30,
-    marginBottom: 30,
   },
-  radioButton: {
-    width: 50,
+  text: {
+    fontSize: 45,
+    color: "#ffffff",
+    fontWeight: "600",
+    marginTop: 120,
+  },
+  background: {
+    width: "100%",
+    height: "100%",
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  inputContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: 350,
+    height: 350,
+    backgroundColor: "#ffffff",
+    opacity: 0.9,
+    justifyContent: "space-between",
+    padding: 20,
+    margin: 10,
+  },
+
+  inputName: {
+    position: "relative",
+    fontSize: 16,
+    opacity: 0.8,
+    fontWeight: "300",
+    color: "#757083",
+    borderWidth: 2,
+    borderColor: "#757083",
+    margin: 20,
+    padding: 10,
+  },
+  colorText: {
+    fontSize: 16,
+    fontWeight: "300",
+    opacity: 1,
+    color: "#757083",
+    marginLeft: 20,
+  },
+  colorBoxContainer: {
+    flex: 1,
+    flexDirection: "row",
+    marginLeft: 20,
+    marginTop: 10,
+  },
+  color1: {
+    backgroundColor: "#090C08",
     height: 50,
-    borderRadius: 25,
-    margin: 5,
+    width: 50,
+    borderRadius: 50 / 2,
+    marginRight: 10,
+  },
+  color2: {
+    backgroundColor: "#474056",
+    height: 50,
+    width: 50,
+    borderRadius: 50 / 2,
+    marginRight: 10,
+  },
+  color3: {
+    backgroundColor: "#8A95A5",
+    height: 50,
+    width: 50,
+    borderRadius: 50 / 2,
+    marginRight: 10,
+  },
+  color4: {
+    backgroundColor: "#B9C6AE",
+    height: 50,
+    width: 50,
+    borderRadius: 50 / 2,
+  },
+  buttonChat: {
+    backgroundColor: "#757083",
+    margin: 20,
+    padding: 25,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "white",
+    textAlign: "center",
   },
 });
-
-export default Start;
