@@ -9,7 +9,10 @@ import Chat from "./components/Chat";
 import "react-native-gesture-handler";
 import firebase from "firebase";
 require("firebase/firestore");
+import * as ImagePicker from 'expo-image-picker';
 
+
+// Using v16.19.0 of Node.js.
 // Create navigation stack
 
 const firebaseConfig = {
@@ -26,7 +29,6 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
-
 
 const Stack = createNativeStackNavigator();
 
