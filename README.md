@@ -60,13 +60,13 @@ Save the changes and restart the app.
 Necessary Libraries
 The following libraries are used in this project:
 
-react-native
-react-navigation
-firebase
-react-native-gifted-chat
-@react-native-community/netinfo
-@react-native-async-storage/async-storage
-react-native-maps
+- react-native
+- react-navigation
+- firebase
+- react-native-gifted-chat
+- @react-native-community/netinfo
+- @react-native-async-storage/async-storage
+- react-native-maps
 
 You can install these libraries using the npm install command:
 ```
@@ -76,7 +76,7 @@ npm install react-navigation firebase react-native-gifted-chat @react-native-com
 Make sure to follow the specific installation instructions for each library if needed.
 
 Features
-Real-time text messaging: Users can send and receive text messages in real-time.
-Image sharing: Users can share images from their device's gallery or take a photo using the camera and send them in the chat.
-Offline support: Messages are cached locally, allowing users to view their chat history even when offline.
-Background color customization: Users can choose a background color for their chat interface.
+- Real-time text messaging: Users can send and receive text messages in real-time.
+- Image sharing: Users can share images from their device's gallery or take a photo using the camera and send them in the chat.
+- Offline support: Messages are cached locally, allowing users to view their chat history even when offline.
+- Background color customization: Users can choose a background color for their chat interface.
