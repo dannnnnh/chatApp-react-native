@@ -49,7 +49,9 @@ const firebaseConfig = {
   messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
   appId: "YOUR_APP_ID",
   measurementId: "YOUR_MEASUREMENT_ID",
-};```
+};
+
+```
 
 Open the App.js file in your project and replace the placeholder configuration with your Firebase configuration.
 
