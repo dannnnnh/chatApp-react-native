@@ -67,9 +67,11 @@ react-native-gifted-chat
 @react-native-community/netinfo
 @react-native-async-storage/async-storage
 react-native-maps
-You can install these libraries using the npm install command:
 
+You can install these libraries using the npm install command:
+```
 npm install react-navigation firebase react-native-gifted-chat @react-native-community/netinfo @react-native-async-storage/async-storage react-native-maps
+```
 
 Make sure to follow the specific installation instructions for each library if needed.
 
